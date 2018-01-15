@@ -1,0 +1,47 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block register %}
+    <div class="register">
+        <form action="{{ path('fos_user_registration_register') }}" method="POST" class="form-horizontal" role="form">
+            {{ form_start(form) }}
+            <h1>Inscription</h1>
+            {# Email adress #}
+            <div class="form-group formM">
+                {{ form_errors(form.email) }}
+                <div>
+                    {{ form_label(form.email, "Email ") }}
+                </div>
+                {{ form_widget(form.email) }}
+            </div>
+            {# Pseudo #}
+            <div class="form-group">
+                {{ form_errors(form.username) }}
+                <div>
+                    {{ form_label(form.username, "Pseudo ") }}
+                </div>
+                {{ form_widget(form.username) }}
+            </div>
+            {# Password #}
+            <div class="form-group">
+                {{ form_errors(form.plainPassword.first) }}
+                <div>
+                    {{ form_label(form.plainPassword.first, "Mot de passe: ") }}
+                </div>
+                {{ form_widget(form.plainPassword.first) }}
+            </div>
+            {# Validation password#}
+            <div class="form-group">
+                {{ form_errors(form.plainPassword.second) }}
+                <div>
+                    {{ form_label(form.plainPassword.second, "Mot de passe: ") }}
+                </div>
+                {{ form_widget(form.plainPassword.second) }}
+            </div>
+            <div>
+                <input type="submit" value="{{ 'registration.submit'|trans }}" />
+            </div>
+        </form>
+        {{ form_rest(form) }}
+    </div>
+{% endblock %}
